@@ -17,11 +17,11 @@ import java.util.List;
 
 public class Trang_truyen_Adapter extends RecyclerView.Adapter<Trang_truyen_Adapter.Vieehoder>{
 
-    List<String> stringList;
+     String[] noiDung;
     Context context;
 
-    public Trang_truyen_Adapter(List<String> stringList, Context context) {
-        this.stringList = stringList;
+    public Trang_truyen_Adapter(String[] noiDung, Context context) {
+        this.noiDung = noiDung;
         this.context = context;
     }
 
@@ -36,12 +36,12 @@ public class Trang_truyen_Adapter extends RecyclerView.Adapter<Trang_truyen_Adap
 
     @Override
     public void onBindViewHolder(@NonNull Trang_truyen_Adapter.Vieehoder holder, int position) {
-        Picasso.get().load(stringList.get(position)).into(holder.imageView);
+        Picasso.get().load(noiDung[position]).into(holder.imageView);
     }
 
     @Override
     public int getItemCount() {
-        return stringList.size();
+        return noiDung.length;
     }
 
     public class Vieehoder extends RecyclerView.ViewHolder {

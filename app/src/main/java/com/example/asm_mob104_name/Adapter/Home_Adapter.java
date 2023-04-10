@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.asm_mob104_name.MainActivity4;
 import com.example.asm_mob104_name.Mode.Truyen;
 import com.example.asm_mob104_name.R;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -60,16 +61,19 @@ public class Home_Adapter extends BaseAdapter {
 
         tv_tenTruyen.setText(""+truyens.get(i).tenTruyen);
         tv_luotXem.setText(truyens.get(i).luotXem+"");
-        tv_luotCMT.setText(""+truyens.get(i).luotThich.length);
-        Picasso.get().load("https://salt.tikicdn.com/cache/w1200/media/catalog/product/i/m/img038_1_1.jpg").into(img_truyen);
+        tv_luotCMT.setText(""+truyens.get(i).luotThich);
+        Picasso.get().load(truyens.get(i).anhBia).into(img_truyen);
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Vào"+ i, Toast.LENGTH_SHORT).show();
-                SharedPreferences sharedPreferences = context.getSharedPreferences("ITEAM",Context.MODE_PRIVATE);
+
+                SharedPreferences sharedPreferences = context.getSharedPreferences("Truyen",Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("VITRI",""+i);
+                Gson gson = new Gson();
+                String a = gson.toJson(truyens.get(i));
+                editor.putString("in4",a);
+
                 editor.apply();
                 context.startActivity(new Intent(context, MainActivity4.class));
             }

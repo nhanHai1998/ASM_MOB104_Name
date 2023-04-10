@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.example.asm_mob104_name.API.GetTruyen;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,6 +15,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        GetTruyen getTruyen = new GetTruyen(null,null,1);
+//        getTruyen.PustTruen();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

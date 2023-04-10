@@ -1,6 +1,5 @@
 package com.example.asm_mob104_name;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,13 +11,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.asm_mob104_name.API.Check_login;
 import com.google.android.material.textfield.TextInputLayout;
 
 
 public class LogInFragment extends Fragment {
     Button btn_dn;
     public EditText edt_ten,edt_mk;
-    TextInputLayout til_ten,til_mk;
+    public TextInputLayout til_ten,til_mk;
     int check;
 
     @Override
@@ -37,11 +37,15 @@ public class LogInFragment extends Fragment {
         btn_dn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Check();
+
+
                 if(Check()!= 0){
                     Toast.makeText(getContext(), "Thông Tin Thiếu", Toast.LENGTH_SHORT).show();
                 }else {
-                    startActivity(new Intent(getActivity(), MainActivity3.class));
+                    Check_login checkLogin = new Check_login(LogInFragment.this,edt_ten.getText().toString(),edt_mk.getText().toString());
+
+                    checkLogin.test();
+
                 }
             }
         });

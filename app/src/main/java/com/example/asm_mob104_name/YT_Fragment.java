@@ -1,6 +1,8 @@
 package com.example.asm_mob104_name;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,8 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
+import com.example.asm_mob104_name.API.GetTruyen;
+import com.example.asm_mob104_name.API.Get_TruyenYT;
 import com.example.asm_mob104_name.Adapter.Home_Adapter;
 import com.example.asm_mob104_name.Mode.Truyen;
+import com.example.asm_mob104_name.Mode.User;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +25,8 @@ import java.util.List;
 
 public class YT_Fragment extends Fragment {
 
-    GridView gridView;
+    public GridView gridView;
+    User user;
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -28,30 +35,14 @@ public class YT_Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_y_t_, container, false);
 
         gridView = view.findViewById(R.id.gv_YT);
-        List<Truyen> truyens = new ArrayList<>();
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("INFOR_USER", Context.MODE_PRIVATE);
+        String name = sharedPreferences.getString("USER","");
 
 
-
-        Truyen truyen = new Truyen("hahaha",null,40,new String[]{"1","2"});
-        Truyen truyen1 = new Truyen("hahaha",null,40,new String[]{"1","2"});
-
-        Truyen truyen2 = new Truyen("hahaha",null,40,new String[]{"1","2"});
-
-        Truyen truyen3 = new Truyen("hahaha",null,40,new String[]{"1","2"});
-        truyens.add(truyen);
-        truyens.add(truyen1);
-        truyens.add(truyen2);
-        truyens.add(truyen3);
-
-
-
-        Home_Adapter home_adapter = new Home_Adapter(truyens,getContext());
-
-
-
-
-        gridView.setAdapter(home_adapter);
-
+        Gson gson1 = new Gson();
+        user = gson1.fromJson(name, User.class);
+        Get_TruyenYT get_truyenYT = new Get_TruyenYT(YT_Fragment.this,gridView,user);
+        get_truyenYT.GetTruyenYT();
 
 
 

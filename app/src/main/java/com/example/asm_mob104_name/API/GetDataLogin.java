@@ -21,12 +21,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PostDataLogin extends AsyncTask<String, Void, Integer> {
+public class GetDataLogin extends AsyncTask<String, Void, Integer> {
 
     LogInFragment context;
     List<User> userList;
 
-    public PostDataLogin(LogInFragment context) {
+    public GetDataLogin(LogInFragment context) {
         this.context = context;
         this.userList = userList;
     }
@@ -65,10 +65,10 @@ public class PostDataLogin extends AsyncTask<String, Void, Integer> {
                 JSONObject object = array.getJSONObject(i);
                User user = new User();
                 user.username = (String) object.get("username");
-                user.passw = (String) object.get("passw");
+                user.password = (String) object.get("passw");
 
 
-                if(user.username.equals(context.edt_ten.getText().toString()) && user.passw.equals(context.edt_mk.getText().toString())){
+                if(user.username.equals(context.edt_ten.getText().toString()) && user.password.equals(context.edt_mk.getText().toString())){
                     userList.add(user);
                     return userList.size();
                 }

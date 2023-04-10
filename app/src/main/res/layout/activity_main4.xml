@@ -30,7 +30,7 @@
                 android:layout_width="100dp"
                 android:layout_height="150dp"
                 android:id="@+id/truyen_img"
-
+                android:scaleType="fitXY"
                 android:src="@drawable/img_5" />
 
             <LinearLayout
@@ -81,7 +81,7 @@
                         android:textSize="20dp" />
 
                     <TextView
-                        android:id="@+id/truyen_LCMT"
+                        android:id="@+id/truyen_LX"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -173,7 +173,7 @@
 <!--            android:text="username" />-->
 
         <EditText
-            android:id="@+id/truyen_edt_cmt"
+            android:id="@+id/edt_cmt"
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:layout_gravity="center"
@@ -181,12 +181,14 @@
             android:layout_marginHorizontal="5dp"
             android:background="@drawable/iteam_bg"
             android:backgroundTint="#FDFC01"
-            android:hint="Bình Luận"
-
-            android:paddingVertical="10dp" />
+            android:hint="binh luận"
+            android:minHeight="48dp"
+            />
         <ImageButton
+            android:id="@+id/truyen_btn_cmt"
              android:src="@drawable/send_24"
             android:layout_weight="1"
+            tools:ignore="SpeakableTextPresentCheck"
             android:layout_width="100dp"
             android:layout_height="50dp"/>
     </LinearLayout>

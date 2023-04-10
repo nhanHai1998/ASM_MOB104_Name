@@ -11,7 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.asm_mob104_name.API.PostDataSignIn;
+import com.example.asm_mob104_name.API.Post_signup;
+import com.example.asm_mob104_name.Mode.User;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.regex.Matcher;
@@ -24,7 +25,7 @@ public class SignUpFragment extends Fragment {
     public EditText edt_mk;
     public EditText edt_email;
     public EditText edt_fullTen;
-    TextInputLayout til_ten,til_mk,til_em,til_fullname;
+    public TextInputLayout til_ten,til_mk,til_em,til_fullname;
     int check;
 
     @Override
@@ -42,15 +43,23 @@ public class SignUpFragment extends Fragment {
         til_fullname = root.findViewById(R.id.til_dk_fullname);
         til_em = root.findViewById(R.id.til_dk_email);
 
+
         btn_dk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if(Check() != 0){
                     Toast.makeText(getContext(), "Chưa Đủ Thông Tin", Toast.LENGTH_SHORT).show();
                 }else {
-                   PostDataSignIn postDataSignIn=  new PostDataSignIn(SignUpFragment.this);
-                   postDataSignIn.execute("https://c9m63d-8080.csb.app/users");
+                    User user = new User();
+                    user.username = edt_ten.getText().toString();
+                    user.password = edt_mk.getText().toString();
+                    user.email = edt_email.getText().toString();
+                    user.fullName = edt_fullTen.getText().toString();
 
+
+                    Post_signup post_signup = new Post_signup(SignUpFragment.this,user);
+                    post_signup.checkMail();
 
 
 

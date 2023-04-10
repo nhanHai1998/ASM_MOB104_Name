@@ -13,17 +13,17 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class LV_adapter extends BaseAdapter {
-List<String> stringList;
+    String[] noiDung;;
 MainActivity5 mainActivity5;
 
-    public LV_adapter(List<String> stringList, MainActivity5 mainActivity5) {
-        this.stringList = stringList;
+    public LV_adapter(String[] noiDung, MainActivity5 mainActivity5) {
+        this.noiDung = noiDung;
         this.mainActivity5 = mainActivity5;
     }
 
     @Override
     public int getCount() {
-        return stringList.size();
+        return noiDung.length;
     }
 
     @Override
@@ -40,7 +40,7 @@ MainActivity5 mainActivity5;
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView  =  LayoutInflater.from(mainActivity5).inflate(R.layout.iteam_trangtruyen,null);
         ImageView img = (ImageView) convertView.findViewById(R.id.iteam_trangtruyen_img);
-        Picasso.get().load(stringList.get(position)).into(img);
+        Picasso.get().load(noiDung[position]).into(img);
 
         return convertView;
     }
